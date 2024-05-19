@@ -24,7 +24,7 @@ const Menu = () => {
         ))}
       </div>
       <div className="flex justify-center">
-        <button className="btn text-2xl btn-outline border-0 border-b-4 mt-4">
+        <button className="btn dark:text-white text-2xl btn-outline border-0 border-b-4 mt-4 mb-16">
           View Full Menu
         </button>
       </div>
