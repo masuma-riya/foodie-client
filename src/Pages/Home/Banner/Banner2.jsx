@@ -9,24 +9,24 @@ import img6 from "../../../assets/home/06.png";
 
 const Banner2 = () => {
   return (
-    <Carousel>
-      <div className="w-11/12 mx-auto rounded-xl">
-        <img src={img1} />
-      </div>
-      <div className="w-11/12 mx-auto">
+    <Carousel className="mt-10 w-10/12 mx-auto">
+      <div className="">
         <img src={img2} />
       </div>
-      <div className="w-11/12 mx-auto">
-        <img src={img3} />
-      </div>
-      <div className="w-11/12 mx-auto">
-        <img src={img4} />
-      </div>
-      <div className="w-11/12 mx-auto">
+      <div className="">
         <img src={img5} />
       </div>
-      <div className="w-11/12 mx-auto">
+      <div className="">
+        <img src={img4} />
+      </div>
+      <div className="">
+        <img src={img1} />
+      </div>
+      <div className="">
         <img src={img6} />
+      </div>
+      <div className="">
+        <img src={img3} />
       </div>
     </Carousel>
   );
