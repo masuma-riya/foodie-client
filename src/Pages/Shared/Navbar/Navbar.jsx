@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     // <nav className="bg-gradient-to-r from-blue-500 via-blue-600 to-green-500">
-    <nav className=" bg-white dark:bg-gray-900 dark:text-white duration-200 sticky top-0 z-50">
+    <nav className=" bg-white dark:bg-gray-900 dark:text-white duration-200 lg:sticky lg:top-0 lg:z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div>
@@ -55,7 +55,10 @@ const Navbar = () => {
           </div>
           <div className="hidden lg:block">
             <div className="flex items-center space-x-4">
-              <NavLink className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold">
+              <NavLink
+                to="/"
+                className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold"
+              >
                 Home
               </NavLink>
               <NavLink className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold">
@@ -64,11 +67,17 @@ const Navbar = () => {
               <NavLink className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold">
                 Dashboard
               </NavLink>
-              <NavLink className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold">
+              <NavLink
+                to="/our-menu"
+                className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold"
+              >
                 Our Menu
               </NavLink>
-              <NavLink className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold">
-                Our Shop
+              <NavLink
+                to="/order-food"
+                className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold"
+              >
+                Order Food
               </NavLink>
             </div>
           </div>
@@ -93,7 +102,10 @@ const Navbar = () => {
         id="mobile-menu"
       >
         <div className="px-2 pt-2 pb-3 space-y-3 sm:px-3">
-          <NavLink className="text-black hover:text-blue-600 block px-4 py-2 rounded-md dark:text-white text-lg md:text-xl italic font-semibold">
+          <NavLink
+            to="/"
+            className="text-black hover:text-blue-600 block px-4 py-2 rounded-md dark:text-white text-lg md:text-xl italic font-semibold"
+          >
             Home
           </NavLink>
           <NavLink className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md ">
@@ -102,11 +114,17 @@ const Navbar = () => {
           <NavLink className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md">
             Dashboard
           </NavLink>
-          <NavLink className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md">
+          <NavLink
+            to="/our-menu"
+            className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md"
+          >
             Our Menu
           </NavLink>
-          <NavLink className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md ">
-            Our Shop
+          <NavLink
+            to="/order-food"
+            className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md "
+          >
+            Order Food
           </NavLink>
           <div className="mt-2">
             <button className="block mt-1 md:w-1/2 w-full text-white font-semibold text-xl px-4 py-2 rounded-md italic bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200">

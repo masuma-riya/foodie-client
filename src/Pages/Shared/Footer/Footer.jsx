@@ -14,7 +14,7 @@ const Footer = () => {
           </a>
           <ul className="text-lg text-center sm:flex items-cente justify-center gap-14 lg:gap-10 xl:gap-14 transition-all duration-500">
             <li>
-              <a className="text-white hover:text-gray-400">Foodie Vibes</a>
+              <a className="text-white hover:text-gray-400">Foodie Zone</a>
             </li>
             <li className="sm:my-0 my-2">
               <a className="text-white hover:text-gray-400">Menu&apos;s</a>
