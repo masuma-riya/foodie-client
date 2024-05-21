@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../Providers/AuthProviders";
+import { useState } from "react";
+import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
 const SignUp = () => {
   const { createUser, signInWithGoogle, updateUserProfile, signInWithGithub } =
-    useContext(AuthContext);
+    useAuth();
 
   const [registerError, setRegisterError] = useState("");
 

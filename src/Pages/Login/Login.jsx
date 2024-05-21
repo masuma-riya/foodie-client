@@ -1,19 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { AuthContext } from "../../Providers/AuthProviders";
+import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
 
 const Login = () => {
   // const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
 
-  const { signInUser, signInWithGoogle, signInWithGithub } =
-    useContext(AuthContext);
+  const { signInUser, signInWithGoogle, signInWithGithub } = useAuth();
 
   const [loginError, setLoginError] = useState("");
 
@@ -22,6 +21,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const from = location.state?.from?.pathname || "/";
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -40,7 +40,7 @@ const Login = () => {
 
         toast.success("User logged in Successfully!");
         e.target.reset();
-        navigate(location?.state ? location.state : "/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -53,7 +53,7 @@ const Login = () => {
       .then(() => {
         // console.log(result.user);
         toast.success("Google Login Successful!");
-        navigate(location?.state ? location.state : "/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -65,7 +65,7 @@ const Login = () => {
       .then(() => {
         // console.log(result.user);
         toast.success("Github Login Successful!");
-        navigate(location?.state ? location.state : "/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);

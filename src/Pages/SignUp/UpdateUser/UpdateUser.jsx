@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../Providers/AuthProviders";
+import useAuth from "../../../Hooks/useAuth";
 
 const UpdateUser = () => {
   // Using context with AuthContext
-  const { user, loading, updateUserProfile } = useContext(AuthContext);
+  const { user, loading, updateUserProfile } = useAuth();
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
