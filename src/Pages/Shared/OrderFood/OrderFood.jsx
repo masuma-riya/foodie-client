@@ -15,7 +15,7 @@ const OrderFood = ({ item }) => {
           {recipe}
         </p>
 
-        <button className="btn text-yellow-600 text-xl btn-outline hover:bg-gray-800 hover:text-yellow-600 border-0 border-b-4 mb-4">
+        <button className="btn bg-slate-100 text-yellow-600 text-xl btn-outline hover:bg-gray-800 hover:text-yellow-600 border-0 border-b-4 mb-4">
           Add to Cart
         </button>
       </div>

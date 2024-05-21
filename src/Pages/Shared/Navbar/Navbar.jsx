@@ -1,14 +1,29 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Logo from "../../../assets/images/food-logo.png";
 import DarkMode from "./DarkMode";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProviders";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("User logged out Successfully");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
-    // <nav className="bg-gradient-to-r from-blue-500 via-blue-600 to-green-500">
-    <nav className=" bg-white dark:bg-gray-900 dark:text-white duration-200 lg:sticky lg:top-0 lg:z-50">
+    <nav className="bg-white dark:bg-gray-900 dark:text-white duration-200 lg:sticky lg:top-0 lg:z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div>
@@ -61,10 +76,16 @@ const Navbar = () => {
               >
                 Home
               </NavLink>
-              <NavLink className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold">
+              <NavLink
+                to="/contact-us"
+                className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold"
+              >
                 Contact Us
               </NavLink>
-              <NavLink className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold">
+              <NavLink
+                to="/dashboard"
+                className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold"
+              >
                 Dashboard
               </NavLink>
               <NavLink
@@ -74,7 +95,7 @@ const Navbar = () => {
                 Our Menu
               </NavLink>
               <NavLink
-                to="/order-food"
+                to="/order-food/salads"
                 className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold"
               >
                 Order Food
@@ -85,14 +106,39 @@ const Navbar = () => {
             <DarkMode></DarkMode>
           </div>
           <div className="hidden lg:block">
-            <div className="ml-4 flex items-center md:ml-6">
-              <button className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 font-semibold italic text-white py-1 px-6 rounded-full flex items-center text-lg gap-3">
-                Login
-              </button>
-              <button className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 font-semibold italic text-white py-1 px-5 rounded-full flex text-lg items-center mx-4 gap-3">
-                Sign up
-              </button>
-            </div>
+            {user ? (
+              <div className="flex gap-6 items-center">
+                <div className="relative">
+                  <img
+                    className="w-12 mt-4 mb-4 h-12 rounded-full border-blue-600 cursor-pointer"
+                    src={
+                      user?.photoURL || "https://i.ibb.co/FBZQVTZ/defalt.jpg"
+                    }
+                    alt=""
+                    title={user.displayName} // Add the title attribute here
+                  />
+                </div>
+                <button
+                  onClick={handleSignOut}
+                  className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 font-semibold italic text-white py-1 px-6 rounded-full flex items-center text-lg"
+                >
+                  Log Out
+                </button>
+              </div>
+            ) : (
+              <div className="ml-4 flex items-center md:ml-6">
+                <Link to="/login">
+                  <button className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 font-semibold italic text-white py-1 px-6 rounded-full flex items-center text-lg gap-3">
+                    Login
+                  </button>
+                </Link>
+                <Link to="/sign-up">
+                  <button className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 font-semibold italic text-white py-1 px-5 rounded-full flex text-lg items-center mx-4 gap-3">
+                    Sign up
+                  </button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -108,10 +154,16 @@ const Navbar = () => {
           >
             Home
           </NavLink>
-          <NavLink className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md ">
+          <NavLink
+            to="/contact-us"
+            className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md"
+          >
             Contact Us
           </NavLink>
-          <NavLink className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md">
+          <NavLink
+            to="/dashboard"
+            className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md"
+          >
             Dashboard
           </NavLink>
           <NavLink
@@ -121,18 +173,45 @@ const Navbar = () => {
             Our Menu
           </NavLink>
           <NavLink
-            to="/order-food"
-            className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md "
+            to="/order-food/salads"
+            className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md"
           >
             Order Food
           </NavLink>
           <div className="mt-2">
-            <button className="block mt-1 md:w-1/2 w-full text-white font-semibold text-xl px-4 py-2 rounded-md italic bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200">
-              Login
-            </button>
-            <button className="block mt-1 md:w-1/2 text-white font-semibold text-xl w-full px-4 py-2 rounded-md italic bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 ">
-              Sign up
-            </button>
+            {user ? (
+              <div className="flex gap-6 items-center">
+                <div className="relative">
+                  <img
+                    className="w-12 mt-4 mb-4 h-12 rounded-full border-blue-600 cursor-pointer"
+                    src={
+                      user?.photoURL || "https://i.ibb.co/FBZQVTZ/defalt.jpg"
+                    }
+                    alt=""
+                    title={user.displayName} // Add the title attribute here
+                  />
+                </div>
+                <button
+                  onClick={handleSignOut}
+                  className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 font-semibold italic text-white py-1 px-6 rounded-full flex items-center text-lg"
+                >
+                  Log Out
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link to="/login">
+                  <button className="block mt-1 md:w-1/2 w-full text-white font-semibold text-xl px-4 py-2 rounded-md italic bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200">
+                    Login
+                  </button>
+                </Link>
+                <Link to="/sign-up">
+                  <button className="block mt-1 md:w-1/2 text-white font-semibold text-xl w-full px-4 py-2 rounded-md italic bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200">
+                    Sign up
+                  </button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
