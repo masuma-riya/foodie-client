@@ -40,7 +40,9 @@ const Cart = () => {
       <div className="flex justify-evenly mb-8">
         <h2 className="text-4xl">Total order: {cart.length}</h2>
         <h2 className="text-4xl">Total Price: {"$" + totalPrice}</h2>
-        <button className="btn btn-primary">Pay</button>
+        <button className="px-8 text-white rounded-lg text-2xl hover:bg-orange-950 font-semibold bg-[#D1A054] border-none">
+          Pay
+        </button>
       </div>
       <div className="overflow-x-auto">
         <table className="table  w-full">
@@ -75,7 +77,7 @@ const Cart = () => {
                 <th>
                   <button
                     onClick={() => handleDelete(item._id)}
-                    className="btn btn-ghost btn-lg"
+                    className="btn-lg"
                   >
                     <FaTrashAlt className="text-red-600"></FaTrashAlt>
                   </button>

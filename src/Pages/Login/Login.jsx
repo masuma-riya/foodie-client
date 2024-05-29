@@ -7,12 +7,13 @@ import {
 } from "react-simple-captcha";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   // const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
 
-  const { signInUser, signInWithGoogle, signInWithGithub } = useAuth();
+  const { signInUser } = useAuth();
 
   const [loginError, setLoginError] = useState("");
 
@@ -48,29 +49,29 @@ const Login = () => {
       });
   };
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then(() => {
-        // console.log(result.user);
-        toast.success("Google Login Successful!");
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  // const handleGoogleSignIn = () => {
+  //   signInWithGoogle()
+  //     .then(() => {
+  //       // console.log(result.user);
+  //       toast.success("Google Login Successful!");
+  //       navigate(from, { replace: true });
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
 
-  const handleGithubSignIn = () => {
-    signInWithGithub()
-      .then(() => {
-        // console.log(result.user);
-        toast.success("Github Login Successful!");
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  // const handleGithubSignIn = () => {
+  //   signInWithGithub()
+  //     .then(() => {
+  //       // console.log(result.user);
+  //       toast.success("Github Login Successful!");
+  //       navigate(from, { replace: true });
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
 
   const handleValidate = (e) => {
     e.preventDefault();
@@ -92,9 +93,11 @@ const Login = () => {
           className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-[26px] m-4"
         >
           <div className="border-[20px] border-transparent rounded-[20px] dark:bg-gray-900 bg-white shadow-lg xl:p-10 2xl:p-10 lg:p-10 md:p-10 sm:p-2 m-2">
-            <h1 className="pt-8 mb-4 pb-6 italic font-medium text-gray-700 text-4xl text-center cursor-default">
+            <h1 className="mb-4 pb-2 italic font-medium text-gray-700 text-4xl text-center cursor-default">
               Login to your Account!
             </h1>
+            {/* Third Party Authentication Options */}
+            <SocialLogin></SocialLogin>
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
                 <label
@@ -181,32 +184,7 @@ const Login = () => {
               </h3>
             </div>
             {/* Third Party Authentication Options */}
-            <div
-              id="third-party-auth"
-              className="flex items-center justify-around mt-5 flex-wrap"
-            >
-              <button
-                onClick={handleGoogleSignIn}
-                className="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1"
-              >
-                <img
-                  className="max-w-[45px]"
-                  src="https://ucarecdn.com/8f25a2ba-bdcf-4ff1-b596-088f330416ef/"
-                  alt="Google"
-                />
-              </button>
 
-              <button
-                onClick={handleGithubSignIn}
-                className="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1"
-              >
-                <img
-                  className="max-w-[45px] filter dark:invert"
-                  src="https://ucarecdn.com/be5b0ffd-85e8-4639-83a6-5162dfa15a16/"
-                  alt="Github"
-                />
-              </button>
-            </div>
             <div className="text-gray-500 flex text-center flex-col mt-2 items-center text-sm">
               <p className="cursor-default text-lg italic">
                 By signing in, you agree to our
