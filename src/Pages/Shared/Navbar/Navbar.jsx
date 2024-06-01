@@ -6,11 +6,13 @@ import useAuth from "../../../Hooks/useAuth";
 
 import { toast } from "react-toastify";
 import useCart from "../../../Hooks/useCart";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
   const [cart] = useCart();
+  const [isAdmin] = useAdmin();
 
   const navigate = useNavigate();
 
@@ -83,12 +85,22 @@ const Navbar = () => {
               >
                 Contact Us
               </NavLink>
-              <NavLink
-                to="/dashboard"
-                className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold"
-              >
-                Dashboard
-              </NavLink>
+              {user && isAdmin && (
+                <NavLink
+                  to="/dashboard/adminHome"
+                  className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold"
+                >
+                  Dashboard
+                </NavLink>
+              )}
+              {user && !isAdmin && (
+                <NavLink
+                  to="/dashboard/userHome"
+                  className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold"
+                >
+                  Dashboard
+                </NavLink>
+              )}
               <NavLink
                 to="/our-menu"
                 className="text-black dark:text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg italic font-semibold"
@@ -188,12 +200,22 @@ const Navbar = () => {
           >
             Contact Us
           </NavLink>
-          <NavLink
-            to="/dashboard"
-            className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md"
-          >
-            Dashboard
-          </NavLink>
+          {user && isAdmin && (
+            <NavLink
+              to="/dashboard/adminHome"
+              className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md"
+            >
+              Dashboard
+            </NavLink>
+          )}
+          {user && !isAdmin && (
+            <NavLink
+              to="/dashboard/userHome"
+              className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md"
+            >
+              Dashboard
+            </NavLink>
+          )}
           <NavLink
             to="/our-menu"
             className="text-black dark:text-white text-lg md:text-xl italic font-semibold hover:text-blue-600 block px-3 py-2 rounded-md"

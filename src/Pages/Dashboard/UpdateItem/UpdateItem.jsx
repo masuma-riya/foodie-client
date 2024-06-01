@@ -10,7 +10,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateItem = () => {
-  const { name, category, recipe, price, _id } = useLoaderData();
+  const { name, category, recipe, image, price, _id } = useLoaderData();
 
   const { register, handleSubmit } = useForm();
   const axiosPublic = useAxiosPublic();
@@ -117,6 +117,20 @@ const UpdateItem = () => {
               className="mb-4 h-40 w-full resize-none rounded-md border border-slate-300  focus:outline-none focus:ring-1 p-5 font-medium text-gray-700"
             />
           </div>
+          {/* Display existing image */}
+          {image && (
+            <div>
+              <label className="block font-medium text-gray-700">
+                Current Image:
+              </label>
+              <img
+                src={image}
+                alt="Current Item Image"
+                className="my-2"
+                style={{ maxWidth: "200px" }}
+              />
+            </div>
+          )}
           <div className="form-control w-full">
             <input
               type="file"

@@ -14,6 +14,10 @@ import AddItems from "../Pages/Dashboard/AddItems/AddItems";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import ManageItems from "../Pages/Dashboard/ManageItems/ManageItems";
 import UpdateItem from "../Pages/Dashboard/UpdateItem/UpdateItem";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import UserHome from "../Pages/Dashboard/UserHome/UserHome";
 
 const router = createBrowserRouter([
   {
@@ -58,11 +62,32 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // normal users routes
       {
         path: "cart",
         element: <Cart></Cart>,
       },
+      {
+        path: "userHome",
+        element: <UserHome></UserHome>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
+      },
       // admin only routes
+      {
+        path: "adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>{" "}
+          </AdminRoute>
+        ),
+      },
       {
         path: "allUsers",
         element: (
@@ -96,7 +121,9 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/menu/${params.id}`),
+          fetch(
+            `https://bistro-boss-server-dun-gamma.vercel.app/menu/${params.id}`
+          ),
       },
     ],
   },
